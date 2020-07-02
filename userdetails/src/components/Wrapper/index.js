@@ -57,8 +57,7 @@ import store from '../../store'
   }
 
   componentDidUpdate(previousProps, previousState){
-    //   const rating = store.getState().rating;
-    //   console.log("rating",rating);
+    
     if(previousState !== this.state){
         console.log("updated",this.state);
            this.writeUserData()
