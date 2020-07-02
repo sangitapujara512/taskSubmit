@@ -1,42 +1,11 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-// import config from "./config";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
 import React, { Component } from 'react'
-import { Provider } from 'react-redux';
 import Firebase from "firebase";
 import config from "../../config";
 import data from '../../../src/data.json'
 import ShowUserDetails from '../ShowUserDetails'
 
-import { connect ,useDispatch } from 'react-redux';
+import { connect} from 'react-redux';
 import store from '../../store'
-
-
 
  class Wrapper extends Component {
 
@@ -45,8 +14,6 @@ import store from '../../store'
     if (!Firebase.apps.length) {
       Firebase.initializeApp(config);
 }   
-   
-
     this.state = {
       data : data
     }
@@ -56,23 +23,16 @@ import store from '../../store'
     this.getUserData();
   }
 
-  componentDidUpdate(previousProps, previousState){
-    
-    if(previousState !== this.state){
-        console.log("updated",this.state);
+  componentDidUpdate(previousProps, previousState){    
+    if(previousState !== this.state){        
            this.writeUserData()
-
-    }
-
-    
+    }   
      
   }
 
-  static getDerivedStateFromProps(props, state) {
-    console.log("getDerivedStateFromProps",state,store.getState());
+  static getDerivedStateFromProps(props, state) {   
     return {
-        rating : store.getState()
-     
+        rating : store.getState()     
     };
   }
 
@@ -91,32 +51,21 @@ import store from '../../store'
   };
 
   render() {
-    // const mystate=store.getState()
-     console.log("DATA=====",this.state);
-    //  alert("test");
-    //  console.log("this",mystate);
    
-    return (
-         
+    return (         
         <ShowUserDetails userData={this.state.data}/>
-       
-           
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  rating: [state.rating],
-  
+  rating: [state.rating],  
 });
-const mapDispatchToProps = (dispatch) => ({  
-     
-});
+// const mapDispatchToProps = (dispatch) => ({
+// });
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Wrapper);
-
-//  export default Wrapper
 
 
