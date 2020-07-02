@@ -22,14 +22,16 @@ export default function ShowUserDetails(props) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <>
+    <p style={{textAlign:'center',color:'blue',fontWeight:'bold'}}>User Details</p>
+    <TableContainer component={Paper} style={{padding:'20px'}}>
       <Table className={classes.table} aria-label="simple table">
-        <TableHead>
+        <TableHead>        
           <TableRow>
             <TableCell>User Name</TableCell>
-            <TableCell align="right">Account</TableCell>
-            <TableCell align="right">Apps&nbsp;</TableCell>
-            <TableCell align="right">App rating</TableCell>
+            <TableCell align="center">Account</TableCell>
+            <TableCell align="center">Apps&nbsp;</TableCell>
+            <TableCell align="center">App rating</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -38,15 +40,16 @@ export default function ShowUserDetails(props) {
               <TableCell component="th" scope="row">
                 {entry[1].name}
               </TableCell>
-              <TableCell align="right">{entry[1].account}</TableCell>
-              <TableCell align="right">
+              <TableCell align="center">{entry[1].account}</TableCell>
+              <TableCell align="center">
                 <UserApps entry={entry} userAccounts={userAccounts} />
               </TableCell>
-              <TableCell align="right"><AppRating account={entry[1].account} count={j} /></TableCell>
+              <TableCell align="center"><AppRating account={entry[1].account} count={j} /></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 }
