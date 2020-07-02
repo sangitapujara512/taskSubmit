@@ -30,6 +30,7 @@ import React, { Component } from 'react'
 import Firebase from "firebase";
 import config from "./config";
 import data from './data.json'
+import ShowUserDetails from './components/ShowUserDetails'
 
 
  class App extends Component {
@@ -65,12 +66,12 @@ import data from './data.json'
   };
 
   render() {
-     console.log("data",this.state);
+      console.log("data",this.state);
    
     return (
       <div>
-        TEST
-        <button onClick={this.getUserData}> Click me</button>
+        <ShowUserDetails userData={this.state.data}/>
+        {/* <button onClick={this.getUserData}> Click me</button> */}
       </div>
     )
   }
