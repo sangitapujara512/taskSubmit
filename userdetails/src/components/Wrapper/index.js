@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Firebase from "firebase";
+import { useSelector, useDispatch } from 'react-redux'
+import { connect} from 'react-redux';
+import store from '../../store'
 import config from "../../config";
 import data from '../../../src/data.json'
 import ShowUserDetails from '../ShowUserDetails'
+import {setRating} from '../../actions/userRatingAction'
 
-import { connect} from 'react-redux';
-import store from '../../store'
 
  class Wrapper extends Component {
 
@@ -30,16 +32,17 @@ import store from '../../store'
      
   }
 
-  static getDerivedStateFromProps(props, state) {   
+  static getDerivedStateFromProps(props, state) {
+    const ratingStore=store.getState() && store.getState().userRating && store.getState().userRating.rating;  
     return {
-        rating : store.getState()     
+        rating : ratingStore    
     };
   }
 
   writeUserData = () => {
     Firebase.database()
       .ref("/")
-      .set(this.state.rating);
+      .set(this.state);
     
   };
   getUserData = () => {
@@ -61,8 +64,9 @@ import store from '../../store'
 const mapStateToProps = (state) => ({
   rating: [state.rating],  
 });
-// const mapDispatchToProps = (dispatch) => ({
-// });
+const mapDispatchToProps = (dispatch) => ({
+  
+});
 export default connect(
   mapStateToProps,
   null
