@@ -66,7 +66,7 @@ import ShowUserDetails from './components/ShowUserDetails'
   };
 
   render() {
-      console.log("data",this.state);
+     console.log("data",this.state);
    
     return (
       <div>

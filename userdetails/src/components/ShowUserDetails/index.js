@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import UserApps from './UserApps'
+import AppRating from './AppRating'
 
 const useStyles = makeStyles({
   table: {
@@ -46,11 +47,12 @@ console.log(usersDetails[0]);
             <TableCell align="right">Account</TableCell>
             {/* <TableCell align="right">Apps</TableCell> */}
             <TableCell align="right">Apps&nbsp;</TableCell>
-            {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
+            {/* <TableCell align="right">App Rated</TableCell> */}
+            <TableCell align="right">App rating</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {usersDetails.map((entry) => (
+          {usersDetails.map((entry,j) => (
             <TableRow key={entry[1].name}>
               <TableCell component="th" scope="row">
                 {entry[1].name}
@@ -84,7 +86,8 @@ console.log(usersDetails[0]);
               <TableCell align="right">
               <UserApps entry={entry} userAccounts ={userAccounts}/>
               </TableCell>
-              {/* <TableCell align="right">{entry[1].name}</TableCell> */}
+              {/* <TableCell align="right"><button>App rated</button></TableCell> */}
+              <TableCell align="right"><AppRating id={entry[1].account} count={j}/></TableCell>
             </TableRow>
           ))}
         </TableBody>
