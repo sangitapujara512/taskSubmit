@@ -27,29 +27,38 @@
 // export default App;
 
 import React, { Component } from 'react'
+import { Provider } from 'react-redux';
+import Wrapper from './components/Wrapper'
 import Firebase from "firebase";
 import config from "./config";
 import data from './data.json'
 import ShowUserDetails from './components/ShowUserDetails'
+import store from './store'
+import { connect ,useDispatch } from 'react-redux';
+
 
 
  class App extends Component {
 
-  constructor(props) {
-    super(props);
-    if (!Firebase.apps.length) {
-      Firebase.initializeApp(config);
-}   
+//   constructor(props) {
+//     super(props);
+//     if (!Firebase.apps.length) {
+//       Firebase.initializeApp(config);
+// }   
    
 
-    this.state = {
-      data : data
-    }
-  }
+//     this.state = {
+//       data : data
+//     }
+//   }
 
-  componentDidMount() {
-    this.getUserData();
-  }
+//   componentDidMount() {
+//     this.getUserData();
+//   }
+
+//   componentDidUpdate(){
+//     console.log("STORE",store.getState())
+//   }
 
   // writeUserData = () => {
   //   Firebase.database()
@@ -57,25 +66,41 @@ import ShowUserDetails from './components/ShowUserDetails'
   //     .set(this.state);
   //   console.log("DATA SAVED");
   // };
-  getUserData = () => {
-    let ref = Firebase.database().ref("/");
-    ref.on("value", snapshot => {
-      const state = snapshot.val();
-      this.setState(state);
-    });
-  };
+  // getUserData = () => {
+  //   let ref = Firebase.database().ref("/");
+  //   ref.on("value", snapshot => {
+  //     const state = snapshot.val();
+  //     this.setState(state);
+  //   });
+  // };
 
   render() {
-     console.log("data",this.state);
+    // const mystate=store.getState()
+    //  console.log("data",this.state);
+    // //  alert("test");
+    //  console.log("this",mystate);
    
     return (
-      <div>
-        <ShowUserDetails userData={this.state.data}/>
+         <Provider store={store}>
+       <Wrapper/>
         {/* <button onClick={this.getUserData}> Click me</button> */}
-      </div>
+        </Provider>        
     )
   }
 }
 
-export default App
+// const mapStateToProps = (state) => ({
+//   rating: [state.rating],
+  
+// });
+// const mapDispatchToProps = (dispatch) => ({  
+     
+// });
+// export default connect(
+//   mapStateToProps,
+//   null
+// )(App);
+
+ export default App
+
 

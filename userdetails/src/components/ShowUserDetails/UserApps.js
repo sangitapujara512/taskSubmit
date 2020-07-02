@@ -3,7 +3,8 @@ import React from 'react'
 function UserApps(props) {
     let apps1='';
 
-    {props.userAccounts.map((account)=>{console.log(account[1].apps)
+    {props.userAccounts.map((account)=>{
+        // console.log(account[1].apps)
         const mat = props.entry[1].account == account[0] ? account[1].apps : '';        
      const apps=Object.entries(mat && mat)         
      
@@ -15,7 +16,7 @@ function UserApps(props) {
       
       })}
     
-    console.log("APPS", apps1);
+    // console.log("APPS", apps1);
 
     
     return (

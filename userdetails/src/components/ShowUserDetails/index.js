@@ -35,7 +35,7 @@ export default function ShowUserDetails(props) {
     const usersDetails = Object.entries(users);
     const userAccounts=Object.entries(accounts)
 
-console.log(usersDetails[0]);
+// console.log(usersDetails[0]);
   const classes = useStyles();
 
   return (
@@ -87,7 +87,7 @@ console.log(usersDetails[0]);
               <UserApps entry={entry} userAccounts ={userAccounts}/>
               </TableCell>
               {/* <TableCell align="right"><button>App rated</button></TableCell> */}
-              <TableCell align="right"><AppRating id={entry[1].account} count={j}/></TableCell>
+              <TableCell align="right"><AppRating account={entry[1].account} count={j}/></TableCell>
             </TableRow>
           ))}
         </TableBody>

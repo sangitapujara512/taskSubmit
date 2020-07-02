@@ -2,11 +2,15 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { useSelector, useDispatch } from 'react-redux'
+import {setRating} from '../../actions/userRatingAction'
 
 export default function AppRating(props) {
-    console.log("rating",props.count);
-    const count=props.count;
+    const {account,count}=props
+    // console.log("rating",props.count);
+    // const count=props.count;
   const [value, setValue] = React.useState(2);
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -16,9 +20,10 @@ export default function AppRating(props) {
           name={count}
           value={value}
           onChange={(event, newValue) => {
-              console.log("event",event,value);
-              console.log("event",event,value);
+            //   console.log("event",event,value);
+            //   console.log("event",event,value);
             setValue(newValue);
+            dispatch(setRating(account,newValue))
           }}
         />
       </Box>
